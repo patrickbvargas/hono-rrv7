@@ -1,0 +1,19 @@
+{
+  "files.exclude": {
+    ".env": true,
+    ".devcontainer": true,
+    ".react-router": true,
+    ".gitignore": true,
+    "README.md": true,
+    "node_modules": true,
+    "package*.json": true,
+    "pnpm-lock.yaml": true,
+    "react-router.config.*": true,
+    "tsconfig.*": true,
+    "vite.config.*": true,
+    "components.json": true,
+    "Dockerfile": true,
+    ".dockerignore": true,
+    "public": true
+  }
+}
