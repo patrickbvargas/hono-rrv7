@@ -4,6 +4,7 @@
     ".devcontainer": true,
     ".react-router": true,
     ".gitignore": true,
+    "drizzle": true,
     "README.md": true,
     "node_modules": true,
     "package*.json": true,
@@ -14,6 +15,7 @@
     "components.json": true,
     "Dockerfile": true,
     ".dockerignore": true,
+    "drizzle.config.ts": true,
     "public": true
   }
 }
