@@ -8,3 +8,5 @@
 # db seed/migrations
 seed.ts
 drizzle
+
+.env
