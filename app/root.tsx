@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { Container, Header, Sidebar, Content } from "~/layouts";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -25,15 +26,19 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="antialiased dark:!bg-black">
+        <Container className="flex flex-col sm:grid sm:grid-cols-[auto_1fr] sm:grid-rows-[auto_1fr]">
+          <Header className="border-b" />
+          <Sidebar className="w-50 border-r row-start-1 row-end-3" />
+          <Content>{children}</Content>
+        </Container>
         <ScrollRestoration />
         <Scripts />
       </body>
