@@ -1,8 +1,8 @@
 import { searchSchema } from "~/shared/schemas";
-import { useSearchParamsURL, useDebouncedCallback } from "~/shared/hooks";
+import { useURLParams, useDebouncedCallback } from "~/shared/hooks";
 
 export function useSearch() {
-  const { searchParams, setSearchParams } = useSearchParamsURL();
+  const { searchParams, setSearchParams } = useURLParams();
   const { query } = searchSchema.parse(Object.fromEntries(searchParams));
 
   const handleSearch = useDebouncedCallback((query: string) => {

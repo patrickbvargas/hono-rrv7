@@ -11,5 +11,5 @@ export const paginationSchema = z.object({
   limit: z.coerce
     .number()
     .catch(DEFAULT_LIMIT)
-    .transform((l) => Math.max(DEFAULT_LIMIT, l)),
+    .transform((l) => Math.max(1, l)),
 });

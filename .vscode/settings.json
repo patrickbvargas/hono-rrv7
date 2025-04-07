@@ -16,6 +16,7 @@
     "Dockerfile": true,
     ".dockerignore": true,
     "drizzle.config.ts": true,
-    "public": true
+    "public": true,
+    "build": true
   }
 }

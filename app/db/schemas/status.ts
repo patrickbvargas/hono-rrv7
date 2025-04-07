@@ -1,10 +1,10 @@
 import { mainSchema } from "./schema";
 
-export const EntityStatusEnum = mainSchema.enum("entity_status", [
+export const entityStatusEnum = mainSchema.enum("entity_status", [
   "active",
   "inactive",
 ]);
 
 export const status = {
-  status: EntityStatusEnum("status").notNull().default("active"),
+  status: entityStatusEnum("status").notNull().default("active"),
 };

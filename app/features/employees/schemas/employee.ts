@@ -11,5 +11,5 @@ export const employeeSchema = employeeBaseSchema
     role: true,
   })
   .extend({
-    _contractCount: z.number(),
+    _contractCount: z.coerce.number(),
   });

@@ -2,7 +2,7 @@ import { sortSchema } from "../schemas/sort";
 import { filterSchema } from "../schemas/filter";
 import { paginationSchema, searchSchema } from "~/shared/schemas";
 
-export function resolveSearchParams(requestUrl: string) {
+export function parseUrlParams(requestUrl: string) {
   const s = Object.fromEntries(new URL(requestUrl).searchParams);
 
   return {

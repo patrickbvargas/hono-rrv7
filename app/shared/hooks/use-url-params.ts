@@ -1,6 +1,6 @@
 import { useLocation, useSearchParams } from "react-router";
 
-export function useSearchParamsURL() {
+export function useURLParams() {
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 

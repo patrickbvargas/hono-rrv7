@@ -1,18 +1,19 @@
-import { useSearchParamsURL } from "~/shared/hooks";
 import { sortSchema } from "../schemas/sort";
+import { useURLParams } from "~/shared/hooks";
 
 export function useSort() {
-  const { pathname, searchParams, setSearchParams } = useSearchParamsURL();
+  const { pathname, searchParams, setSearchParams } = useURLParams();
   const { sort, order } = sortSchema.parse(Object.fromEntries(searchParams));
 
   const toggleDirection = (col: string) =>
     col === sort && order === "asc" ? "desc" : "asc";
 
   const buildSortParams = (column: string) => {
-    searchParams.set("sort", column);
-    searchParams.set("order", toggleDirection(column));
-    searchParams.set("page", "1");
-    return searchParams;
+    const params = new URLSearchParams(searchParams);
+    params.set("sort", column);
+    params.set("order", toggleDirection(column));
+    params.set("page", "1");
+    return params;
   };
 
   const getSortURL = (column: string) => {
