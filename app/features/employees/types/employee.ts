@@ -1,4 +1,4 @@
-import type { z } from "zod";
-import { employeeSchema } from "../schemas/employee";
+import { z } from "zod";
+import { employeeSchema } from "../schemas/response/employee";
 
-export type Employee = z.infer<typeof employeeSchema>;
+export type EmployeeSchema = z.infer<typeof employeeSchema>;

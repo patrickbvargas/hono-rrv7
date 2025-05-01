@@ -13,7 +13,6 @@ import {
   TableRow,
 } from "./ui/table";
 import { SortingLink } from "./sorting-link";
-import { useNavigation } from "~/shared/hooks";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -23,7 +22,6 @@ export const DataTable = <TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) => {
-  const { isNavigating } = useNavigation();
   const table = useReactTable({
     data,
     columns,
@@ -31,9 +29,7 @@ export const DataTable = <TData, TValue>({
   });
 
   return (
-    <Table
-      className={isNavigating ? "[&_*]:opacity-80 [&_*]:cursor-progress" : ""}
-    >
+    <Table>
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>

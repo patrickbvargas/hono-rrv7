@@ -9,15 +9,15 @@ import {
   SQL,
   count,
 } from "drizzle-orm";
-import { employeeSchema } from "../schemas/employee";
-import type { UrlParams } from "../types/url-params";
+import { responseSchema } from "../schemas/response";
+import type { PayloadSchema } from "../types/payload";
 import { drizzleDb, contractEmployees, employees } from "~/db";
 
 export async function getEmployees({
   pagination: { page, limit },
   search: { query },
   sorting: { sort, order },
-}: UrlParams) {
+}: PayloadSchema) {
   const sortingColumn: SQL =
     sort === "_contractCount"
       ? sql`count(${contractEmployees.id})`
@@ -62,8 +62,8 @@ export async function getEmployees({
       .offset(offset),
   ]);
 
-  return {
+  return responseSchema.parse({
     count: rawCount[0].count,
-    data: employeeSchema.array().parse(rawData),
-  };
+    data: rawData,
+  });
 }

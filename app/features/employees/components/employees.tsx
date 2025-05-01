@@ -4,20 +4,20 @@ import {
   WrapperFooter,
   WrapperScrollArea,
 } from "~/shared/components";
-import { columns } from "../configs/columns";
+import { columns } from "../constants/columns";
 import { DataTable } from "~/shared/components";
-import type { Employee } from "../types/employee";
+import type { EmployeeSchema } from "../types/employee";
 import { Search, Pagination } from "~/shared/components";
 
 interface EmployeesProps {
-  data: Employee[];
+  data: EmployeeSchema[];
   count: number;
 }
 export const Employees = ({ data, count }: EmployeesProps) => {
   return (
     <Wrapper>
       <WrapperHeader>
-        <Search />
+        <Search placeholder="Filtrar por nome ou OAB..." />
       </WrapperHeader>
       <WrapperScrollArea>
         <DataTable columns={columns} data={data} />

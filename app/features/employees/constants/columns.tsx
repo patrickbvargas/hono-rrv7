@@ -1,10 +1,10 @@
 import { Ellipsis } from "lucide-react";
 import { formatter } from "~/shared/utils";
 import { Badge } from "~/shared/components";
-import { type Employee } from "../types/employee";
 import { type ColumnDef } from "@tanstack/react-table";
+import type { EmployeeSchema } from "../types/employee";
 
-export const columns: ColumnDef<Employee>[] = [
+export const columns: ColumnDef<EmployeeSchema>[] = [
   {
     accessorKey: "fullName",
     header: "Nome",

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Employee } from "../types/employee";
+import type { EmployeeSchema } from "../../types/employee";
 import { sortSchema as sortBaseSchema } from "~/shared/schemas";
 
 const allowedSortColumns = [
@@ -9,7 +9,7 @@ const allowedSortColumns = [
   "role",
   "type",
   "_contractCount",
-] as const satisfies ReadonlyArray<keyof Employee>;
+] as const satisfies ReadonlyArray<keyof EmployeeSchema>;
 
 export const sortSchema = sortBaseSchema.extend({
   sort: z.enum(allowedSortColumns).catch("fullName"),

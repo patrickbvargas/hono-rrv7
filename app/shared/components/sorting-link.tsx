@@ -23,7 +23,7 @@ export const SortingLink = ({
     <Link
       to={getSortURL(column)}
       className={cn(
-        "size-full flex items-center justify-between gap-2 px-2",
+        "size-full flex items-center justify-between gap-2 p-3",
         !isSortable && "pointer-events-none",
       )}
     >
