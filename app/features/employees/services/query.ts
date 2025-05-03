@@ -16,12 +16,12 @@ import { drizzleDb, contractEmployees, employees } from "~/db";
 export async function getEmployees({
   pagination: { page, limit },
   search: { query },
-  sorting: { sort, order },
+  sorting: { column, direction },
 }: PayloadSchema) {
   const sortingColumn: SQL =
-    sort === "_contractCount"
+    column === "_contractCount"
       ? sql`count(${contractEmployees.id})`
-      : sql`${employees[sort]}`;
+      : sql`${employees[column]}`;
 
   const offset = (page - 1) * limit;
 
@@ -57,7 +57,9 @@ export async function getEmployees({
       )
       .where(filters)
       .groupBy(employees.id)
-      .orderBy(() => (order === "desc" ? desc(sortingColumn) : sortingColumn))
+      .orderBy(() =>
+        direction === "descending" ? desc(sortingColumn) : sortingColumn,
+      )
       .limit(limit)
       .offset(offset),
   ]);

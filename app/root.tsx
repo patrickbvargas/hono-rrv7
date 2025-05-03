@@ -1,3 +1,4 @@
+import "./app.css";
 import {
   isRouteErrorResponse,
   Links,
@@ -6,9 +7,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { Providers } from "./providers";
 import type { Route } from "./+types/root";
-import "./app.css";
 import { Container, Header, Sidebar, Content } from "~/layouts";
 
 export const links: Route.LinksFunction = () => [
@@ -34,13 +34,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="antialiased dark:!bg-black">
-        <Container className="flex flex-col sm:grid sm:grid-cols-[auto_1fr] sm:grid-rows-[auto_1fr]">
-          <Header className="border-b" />
-          <Sidebar className="w-50 border-r row-start-1 row-end-3" />
-          <Content>{children}</Content>
-        </Container>
-        <ScrollRestoration />
-        <Scripts />
+        <Providers>
+          <Container className="flex flex-col sm:grid sm:grid-cols-[auto_1fr] sm:grid-rows-[auto_1fr]">
+            <Header className="border-b" />
+            <Sidebar className="w-50 border-r row-start-1 row-end-3" />
+            <Content>{children}</Content>
+          </Container>
+          <ScrollRestoration />
+          <Scripts />
+        </Providers>
       </body>
     </html>
   );

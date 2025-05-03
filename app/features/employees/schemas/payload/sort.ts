@@ -12,5 +12,5 @@ const allowedSortColumns = [
 ] as const satisfies ReadonlyArray<keyof EmployeeSchema>;
 
 export const sortSchema = sortBaseSchema.extend({
-  sort: z.enum(allowedSortColumns).catch("fullName"),
+  column: z.enum(allowedSortColumns).catch("fullName"),
 });

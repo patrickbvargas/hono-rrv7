@@ -1,17 +1,20 @@
 import { sortSchema } from "../schemas/sort";
 import { useURLParams } from "~/shared/hooks";
+import type { SortDescriptor } from "@heroui/react";
 
 export function useSort() {
   const { pathname, searchParams, setSearchParams } = useURLParams();
-  const { sort, order } = sortSchema.parse(Object.fromEntries(searchParams));
+  const { column, direction } = sortSchema.parse(
+    Object.fromEntries(searchParams),
+  );
 
-  const toggleDirection = (col: string) =>
-    col === sort && order === "asc" ? "desc" : "asc";
+  const toggleDirection = (col: string): SortDescriptor["direction"] =>
+    col === column && direction === "ascending" ? "descending" : "ascending";
 
   const buildSortParams = (column: string) => {
     const params = new URLSearchParams(searchParams);
-    params.set("sort", column);
-    params.set("order", toggleDirection(column));
+    params.set("column", column);
+    params.set("direction", toggleDirection(column));
     params.set("page", "1");
     return params;
   };
@@ -26,5 +29,5 @@ export function useSort() {
     setSearchParams(params);
   };
 
-  return { sort, order, getSortURL, handleSort };
+  return { column, direction, getSortURL, handleSort };
 }

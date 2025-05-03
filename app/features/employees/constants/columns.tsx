@@ -1,6 +1,6 @@
+import { Chip } from "@heroui/react";
 import { Ellipsis } from "lucide-react";
 import { formatter } from "~/shared/utils";
-import { Badge } from "~/shared/components";
 import { type ColumnDef } from "@tanstack/react-table";
 import type { EmployeeSchema } from "../types/employee";
 
@@ -41,9 +41,9 @@ export const columns: ColumnDef<EmployeeSchema>[] = [
     accessorKey: "role",
     header: "Perfil",
     cell: ({ row }) => (
-      <Badge className="uppercase" variant="secondary">
+      <Chip size="sm" className="uppercase">
         {formatter.employeeRole(row.original.role)}
-      </Badge>
+      </Chip>
     ),
     enableSorting: true,
   },

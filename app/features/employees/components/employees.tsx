@@ -1,13 +1,13 @@
 import {
   Wrapper,
-  WrapperHeader,
   WrapperFooter,
-  WrapperScrollArea,
+  WrapperContent,
+  Pagination,
+  WrapperHeader,
 } from "~/shared/components";
 import { columns } from "../constants/columns";
 import { DataTable } from "~/shared/components";
 import type { EmployeeSchema } from "../types/employee";
-import { Search, Pagination } from "~/shared/components";
 
 interface EmployeesProps {
   data: EmployeeSchema[];
@@ -16,12 +16,10 @@ interface EmployeesProps {
 export const Employees = ({ data, count }: EmployeesProps) => {
   return (
     <Wrapper>
-      <WrapperHeader>
-        <Search placeholder="Filtrar por nome ou OAB..." />
-      </WrapperHeader>
-      <WrapperScrollArea>
+      <WrapperHeader>Teste</WrapperHeader>
+      <WrapperContent>
         <DataTable columns={columns} data={data} />
-      </WrapperScrollArea>
+      </WrapperContent>
       <WrapperFooter>
         <Pagination totalRecords={count} />
       </WrapperFooter>
