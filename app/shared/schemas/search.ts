@@ -1,5 +1,5 @@
 import { z } from "zod";
 
-export const searchSchema = z.object({
+export const zSearchBase = z.object({
   query: z.string().catch(""),
 });

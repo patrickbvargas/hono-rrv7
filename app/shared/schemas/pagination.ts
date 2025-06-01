@@ -3,7 +3,7 @@ import { z } from "zod";
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 10;
 
-export const paginationSchema = z.object({
+export const zPaginationBase = z.object({
   page: z.coerce
     .number()
     .catch(DEFAULT_PAGE)
@@ -11,5 +11,5 @@ export const paginationSchema = z.object({
   limit: z.coerce
     .number()
     .catch(DEFAULT_LIMIT)
-    .transform((l) => Math.max(1, l)),
+    .transform((l) => Math.max(DEFAULT_LIMIT, l)),
 });

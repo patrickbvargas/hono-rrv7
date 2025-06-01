@@ -21,10 +21,7 @@ function WrapperHeader({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div
-      className={cn("flex justify-between items-center gap-3", className)}
-      {...props}
-    />
+    <div className={cn("flex items-center gap-3", className)} {...props} />
   );
 }
 

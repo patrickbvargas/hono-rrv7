@@ -1,12 +1,12 @@
 import { z } from "zod";
-import type { SortDescriptor } from "@heroui/react";
+import type { SortDirection } from "../types";
 
 const allowedSortOrders = [
   "ascending",
   "descending",
-] as const satisfies Readonly<SortDescriptor["direction"][]>;
+] as const satisfies Readonly<SortDirection[]>;
 
-export const sortSchema = z.object({
-  column: z.string().optional(),
+export const zSortBase = z.object({
+  column: z.string(),
   direction: z.enum(allowedSortOrders).catch(allowedSortOrders[0]),
 });

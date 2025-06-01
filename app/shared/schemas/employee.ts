@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const employeeBaseSchema = z.object({
+export const zEmployeeBase = z.object({
   id: z.string(),
   fullName: z.string(),
   oabNumber: z.string().nullable(),

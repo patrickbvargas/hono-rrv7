@@ -1,10 +1,10 @@
 import { Chip } from "@heroui/react";
 import { Ellipsis } from "lucide-react";
 import { formatter } from "~/shared/utils";
+import type { Employee } from "../types/employee";
 import { type ColumnDef } from "@tanstack/react-table";
-import type { EmployeeSchema } from "../types/employee";
 
-export const columns: ColumnDef<EmployeeSchema>[] = [
+export const columns: ColumnDef<Employee>[] = [
   {
     accessorKey: "fullName",
     header: "Nome",

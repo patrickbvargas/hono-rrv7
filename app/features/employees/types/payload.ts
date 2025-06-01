@@ -1,4 +1,4 @@
 import { z } from "zod";
-import { payloadSchema } from "../schemas/payload";
+import { zPayload } from "../schemas/payload";
 
-export type PayloadSchema = z.infer<typeof payloadSchema>;
+export type Payload = z.infer<typeof zPayload>;

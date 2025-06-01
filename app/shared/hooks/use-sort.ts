@@ -1,33 +1,34 @@
-import { sortSchema } from "../schemas/sort";
-import { useURLParams } from "~/shared/hooks";
-import type { SortDescriptor } from "@heroui/react";
+import { zSortBase } from "~/shared/schemas";
+import type { SortDirection } from "~/shared/types";
+import { parseAsInteger, parseAsString, useQueryStates } from "nuqs";
 
 export function useSort() {
-  const { pathname, searchParams, setSearchParams } = useURLParams();
-  const { column, direction } = sortSchema.parse(
-    Object.fromEntries(searchParams),
+  const [rawSort, setSort] = useQueryStates(
+    {
+      column: parseAsString.withDefault(""),
+      direction: parseAsString.withDefault(""),
+      page: parseAsInteger.withDefault(1),
+    },
+    {
+      shallow: false,
+    },
   );
 
-  const toggleDirection = (col: string): SortDescriptor["direction"] =>
-    col === column && direction === "ascending" ? "descending" : "ascending";
+  const sort = zSortBase.parse(rawSort);
 
-  const buildSortParams = (column: string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("column", column);
-    params.set("direction", toggleDirection(column));
-    params.set("page", "1");
-    return params;
-  };
-
-  const getSortURL = (column: string) => {
-    const params = buildSortParams(column);
-    return `${pathname}?${params.toString()}`;
+  const toggleDirection = (column: string): SortDirection => {
+    return column === sort.column && sort.direction === "ascending"
+      ? "descending"
+      : "ascending";
   };
 
   const handleSort = (column: string) => {
-    const params = buildSortParams(column);
-    setSearchParams(params);
+    setSort({
+      column,
+      direction: toggleDirection(column),
+      page: 1,
+    });
   };
 
-  return { column, direction, getSortURL, handleSort };
+  return { sort, handleSort };
 }

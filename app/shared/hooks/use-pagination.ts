@@ -1,28 +1,25 @@
-import { useURLParams } from "~/shared/hooks";
-import { paginationSchema } from "~/shared/schemas";
+import { zPaginationBase } from "~/shared/schemas";
+import { parseAsInteger, useQueryStates } from "nuqs";
 
 export function usePagination() {
-  const { pathname, searchParams, setSearchParams } = useURLParams();
-  const { page, limit } = paginationSchema.parse(
-    Object.fromEntries(searchParams),
+  const [rawPagination, setPagination] = useQueryStates(
+    {
+      page: parseAsInteger.withDefault(1),
+      limit: parseAsInteger.withDefault(10),
+    },
+    {
+      shallow: false,
+    },
   );
 
-  const buildPaginationParams = (page: number) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", page.toString());
-    params.set("limit", limit.toString());
-    return params;
-  };
-
-  const getPageURL = (pageNumber: number) => {
-    const params = buildPaginationParams(pageNumber);
-    return `${pathname}?${params.toString()}`;
-  };
+  const pagination = zPaginationBase.parse(rawPagination);
 
   const handlePagination = (pageNumber: number) => {
-    const params = buildPaginationParams(pageNumber);
-    setSearchParams(params);
+    setPagination({
+      page: pageNumber,
+      limit: pagination.limit,
+    });
   };
 
-  return { page, limit, getPageURL, handlePagination };
+  return { pagination, handlePagination };
 }

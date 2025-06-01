@@ -25,7 +25,7 @@ export const DataTable = <TData, TValue>({
   data,
   ...props
 }: DataTableProps<TData, TValue>) => {
-  const { column, direction, handleSort } = useSort();
+  const { sort, handleSort } = useSort();
   const table = useReactTable({
     data,
     columns,
@@ -34,10 +34,14 @@ export const DataTable = <TData, TValue>({
 
   return (
     <Table
-      sortDescriptor={{ column: column ?? "", direction }}
+      sortDescriptor={{
+        column: sort.column ?? "",
+        direction: sort.direction ?? "ascending",
+      }}
       onSortChange={({ column }) => handleSort(String(column))}
       removeWrapper
       isHeaderSticky
+      selectionMode="single"
       {...props}
     >
       <TableHeader>

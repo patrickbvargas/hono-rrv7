@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { employeeBaseSchema } from "~/shared/schemas";
+import { zEmployeeBase } from "~/shared/schemas";
 
-export const employeeSchema = employeeBaseSchema
+export const zEmployee = zEmployeeBase
   .pick({
     id: true,
     fullName: true,

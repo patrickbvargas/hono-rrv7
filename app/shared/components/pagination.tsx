@@ -5,17 +5,13 @@ interface PaginationProps {
   totalRecords: number;
 }
 export const Pagination = ({ totalRecords = 0 }: PaginationProps) => {
-  const {
-    page: currentPage,
-    limit: pageSize,
-    handlePagination,
-  } = usePagination();
+  const { pagination, handlePagination } = usePagination();
 
-  const totalPages = Math.ceil(totalRecords / pageSize);
+  const totalPages = Math.ceil(totalRecords / pagination.limit);
 
   return (
     <PaginationPrimitive
-      page={currentPage}
+      page={pagination.page}
       total={totalPages}
       onChange={handlePagination}
       showControls

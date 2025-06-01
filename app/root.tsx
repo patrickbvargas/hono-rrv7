@@ -9,6 +9,7 @@ import {
 } from "react-router";
 import { Providers } from "./providers";
 import type { Route } from "./+types/root";
+import { NuqsAdapter } from "nuqs/adapters/react-router/v7";
 import { Container, Header, Sidebar, Content } from "~/layouts";
 
 export const links: Route.LinksFunction = () => [
@@ -49,7 +50,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <NuqsAdapter>
+      <Outlet />
+    </NuqsAdapter>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

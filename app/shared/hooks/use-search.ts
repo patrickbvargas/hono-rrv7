@@ -1,19 +1,24 @@
-import { searchSchema } from "~/shared/schemas";
-import { useURLParams, useDebouncedCallback } from "~/shared/hooks";
+import { zSearchBase } from "~/shared/schemas";
+import { useDebouncedCallback } from "~/shared/hooks";
+import { parseAsInteger, parseAsString, useQueryStates } from "nuqs";
 
 export function useSearch() {
-  const { searchParams, setSearchParams } = useURLParams();
-  const { query } = searchSchema.parse(Object.fromEntries(searchParams));
+  const [rawQuery, setQuery] = useQueryStates(
+    {
+      query: parseAsString.withDefault(""),
+      page: parseAsInteger.withDefault(1),
+    },
+    {
+      shallow: false,
+    },
+  );
+
+  const query = zSearchBase.parse(rawQuery).query;
 
   const handleSearch = useDebouncedCallback((query: string) => {
-    setSearchParams((prev) => {
-      if (query) {
-        prev.set("query", query);
-      } else {
-        prev.delete("query");
-      }
-      prev.set("page", "1");
-      return prev;
+    setQuery({
+      query,
+      page: 1,
     });
   }, 300);
 

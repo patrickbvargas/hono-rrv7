@@ -2,10 +2,10 @@ import React from "react";
 import { Await } from "react-router";
 import type { Route } from "./+types/home";
 import { Employees } from "~/features/employees";
-import { getEmployees, parseUrlParams } from "~/features/employees/server";
+import { getEmployees, loadSearchParams } from "~/features/employees/server";
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const searchParams = parseUrlParams(request.url);
+  const searchParams = loadSearchParams(request);
   return getEmployees(searchParams);
 }
 
