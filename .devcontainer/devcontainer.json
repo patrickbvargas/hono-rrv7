@@ -1,9 +1,22 @@
 {
   "name": "Hono",
-  "dockerComposeFile": "docker-compose.yml",
   "service": "app",
+  "dockerComposeFile": "docker-compose.yml",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "postCreateCommand": "pnpm install",
   "forwardPorts": [3000, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    },
+    "5432": {
+      "label": "Database"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -15,8 +28,7 @@
         "esbenp.prettier-vscode",
         "yoavbls.pretty-ts-errors",
         "bradlc.vscode-tailwindcss",
-        "codeium.codeium",
-        "prisma.prisma"
+        "codeium.codeium"
       ]
     }
   }
