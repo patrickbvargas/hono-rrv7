@@ -4,6 +4,7 @@
     ".devcontainer": true,
     ".react-router": true,
     ".gitignore": true,
+    ".npmrc": true,
     "drizzle": true,
     "README.md": true,
     "node_modules": true,

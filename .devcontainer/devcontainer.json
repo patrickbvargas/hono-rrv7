@@ -1,21 +1,11 @@
 {
   "name": "Hono",
-  "service": "app",
-  "dockerComposeFile": "docker-compose.yml",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "pnpm install",
+  "forwardPorts": [3000],
   "hostRequirements": {
     "cpus": 4
-  },
-  "postCreateCommand": "pnpm install",
-  "forwardPorts": [3000, 5432],
-  "portsAttributes": {
-    "3000": {
-      "label": "Application",
-      "onAutoForward": "openPreview"
-    },
-    "5432": {
-      "label": "Database"
-    }
   },
   "customizations": {
     "vscode": {
